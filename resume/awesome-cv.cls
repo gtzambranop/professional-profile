@@ -111,7 +111,7 @@
 %-------------------------------------------------------------------------------
 %% Page Layout
 % Configure page margins with geometry
-\geometry{left=1.4cm, top=1.4cm, right=1.4cm, bottom=1.4cm, footskip=.5cm}
+\geometry{left=1.3cm, top=1.3cm, right=1.3cm, bottom=1.3cm, footskip=.5cm}
 
 %% Header & Footer
 % Set offset to each header and footer
@@ -198,7 +198,8 @@
 \newcommand*{\paragraphstyle}{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text}}
 
 % For elements of entry
-\newcommand*{\entrytitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\entrytitlestyle}[1]{{\fontsize{12pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\entryproyectstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
 \newcommand*{\entrypositionstyle}[1]{{\fontsize{8pt}{1em}\bodyfont\scshape\color{graytext} #1}}
 \newcommand*{\entrydatestyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
 \newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
@@ -713,7 +714,7 @@
   \paragraphstyle
 }{%
   \par
-  \vspace{2mm}
+  \vspace{0.5mm}
 }
 
 % Define an environment for cventry
@@ -763,30 +764,35 @@
     \end{itemize}
 }
 
-% Project title style
-\newcommand{\projecttitlestyle}[1]{%
-    {\bodyfont\bfseries\color{text}#1}
-}
+% Experience (Company)
 \newcommand{\experience}[4]{%
   \vspace{-0.5em}
 
-  \entrytitlestyle{#1}\hfill{\footnotesize  #4}\\
-  \entrypositionstyle{#2}\hfill{\footnotesize  #3}
+  \entrytitlestyle{#1}\hfill{\footnotesize #4}\\
+  \entrypositionstyle{#2}\hfill{\footnotesize #3}
 
   \vspace{0em}
 }
 
-% Project title style
+% Project title
+\newcommand{\projecttitlestyle}[1]{%
+    \entryproyectstyle{#1}
+}
+
+% Project
 \newcommand{\project}[2]{%
   \vspace{0em}
 
-  \projecttitlestyle{#1}
+  \hspace{1em}\begin{minipage}{\dimexpr\textwidth-1.2em\relax}
+    \projecttitlestyle{#1}
 
-  \begin{cvachievements}
-    #2
-  \end{cvachievements}
+    \begin{cvachievements}
+      #2
+    \end{cvachievements}
+  \end{minipage}
 }
 
+% Achievement
 \newcommand{\achievement}[1]{%
   \item \descriptionstyle{#1}
 }
@@ -842,6 +848,28 @@
     \tabularx{\textwidth}{r>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}X}
 }{%
 \endtabularx\par
+}
+
+% Technical Skills three
+\newenvironment{cvskillsthree}{%
+    \vspace{-1.7em}
+    \noindent
+}{%
+}
+
+\newcommand{\skillcategory}[1]{%
+    {\skilltypestyle{#1}}\par
+    \vspace{-0.2em}
+}
+
+\newcommand{\skillitem}[1]{%
+    \hspace{0.8em}{\skillsetstyle{#1}}\par\vspace{-0.3em}
+}
+
+\newcommand{\cvskillcolumn}[1]{%
+\begin{minipage}[t]{0.19\textwidth}
+#1
+\end{minipage}
 }
 
 % Define a line of cv information(skill)
